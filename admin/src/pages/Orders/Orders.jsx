@@ -1,4 +1,3 @@
-import React from 'react'
 import './Orders.css'
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios'
@@ -6,7 +5,7 @@ import { useEffect } from 'react';
 import { assets } from '../../assets/assets'
 import { useState } from 'react';
 
-const Orders = ({url}) => {
+const Orders = ({ url }) => {
 
   const [orders, setOrders] = useState([])
 
