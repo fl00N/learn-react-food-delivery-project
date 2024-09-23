@@ -1,12 +1,12 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './PlaceOrder.css'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
+import { config } from '../../config'
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext)
+  const { getTotalCartAmount, token, food_list, cartItems} = useContext(StoreContext)
   const [data, setData] = useState({
     firstName: '',
     lastName: '',
@@ -39,7 +39,7 @@ const PlaceOrder = () => {
     }
 
     try {
-      const response = await axios.post(`${url}/api/order/place`, orderData, { headers: { token } })
+      const response = await axios.post(`${config.baseUrl}/api/order/place`, orderData, { headers: { token } })
       if (response.data.success) {
         const { session_url } = response.data
         window.location.replace(session_url)

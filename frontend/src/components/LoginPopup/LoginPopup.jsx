@@ -1,12 +1,13 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import './LoginPopup.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
+import { config } from '../../config'
 
 const LoginPopup = ({setShowLogin}) => {
 
-    const {url, setToken} = useContext(StoreContext)
+    const {setToken} = useContext(StoreContext)
 
     const [currState, setCurrState] = useState('Sign Up')
     const [data, setData] = useState({
@@ -26,7 +27,7 @@ const LoginPopup = ({setShowLogin}) => {
     const onLogin = async (event) => {
         event.preventDefault()
 
-        let newUrl = url
+        let newUrl = config.baseUrl
 
         if (currState==='Login') {
             newUrl += '/api/user/login'

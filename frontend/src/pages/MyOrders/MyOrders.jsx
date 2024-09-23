@@ -1,16 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './MyOrders.css'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 import { assets } from '../../assets/assets'
+import { config } from '../../config'
 
 const MyOrders = () => {
 
     const [data, setData] = useState([])
-    const {url, token} = useContext(StoreContext)
+    const {token} = useContext(StoreContext)
 
     const fetchOrders = async () => {
-        const response = await axios.post(url + '/api/order/user-orders', {}, {headers: {token}})
+        const response = await axios.post(config.baseUrl + '/api/order/user-orders', {}, {headers: {token}})
         setData(response.data.data)
     }
 
