@@ -1,6 +1,5 @@
 import foodModel from "../models/foodModel.js";
-import imagekit from '../config/imagekit.js'; 
-import fs from 'fs'
+import imagekit from '../config/imagekit.js';
 
 const addFood = async (req, res) => {
     try {
@@ -8,9 +7,9 @@ const addFood = async (req, res) => {
         let image_fileId = '';
 
         if (req.file) {
-            const fileBuffer = fs.readFileSync(req.file.path);
+            // Directly use the buffer from memory storage
             const result = await imagekit.upload({
-                file: fileBuffer.toString('base64'),  
+                file: req.file.buffer.toString('base64'),  // Use buffer directly
                 fileName: req.file.originalname,
                 folder: '/uploads'
             });
@@ -35,6 +34,7 @@ const addFood = async (req, res) => {
         res.json({ success: false, message: "Error adding food" });
     }
 };
+
 
 const listFood = async (req, res) => {
     try {
