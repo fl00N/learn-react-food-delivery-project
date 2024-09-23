@@ -7,9 +7,8 @@ const addFood = async (req, res) => {
         let image_fileId = '';
 
         if (req.file) {
-            // Directly use the buffer from memory storage
             const result = await imagekit.upload({
-                file: req.file.buffer.toString('base64'),  // Use buffer directly
+                file: req.file.buffer.toString('base64'),
                 fileName: req.file.originalname,
                 folder: '/uploads'
             });
