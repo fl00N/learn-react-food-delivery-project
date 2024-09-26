@@ -5,9 +5,9 @@ import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 import { config } from '../../config'
 
-const LoginPopup = ({setShowLogin}) => {
+const LoginPopup = () => {
 
-    const {setToken} = useContext(StoreContext)
+    const {setToken, setShowLogin} = useContext(StoreContext)
 
     const [currState, setCurrState] = useState('Sign Up')
     const [data, setData] = useState({

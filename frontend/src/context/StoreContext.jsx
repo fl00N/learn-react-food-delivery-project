@@ -10,6 +10,7 @@ const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState('');
     const [food_list, setFoodList] = useState([]);
+    const [showLogin, setShowLogin] = useState(false)
 
     const addToCart = async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
@@ -78,12 +79,14 @@ const StoreContextProvider = (props) => {
         removeFromCart,
         getTotalCartAmount,
         token,
-        setToken
+        setToken,
+        showLogin, setShowLogin
     };
 
     return (
         <StoreContext.Provider value={contextValue}>
             {props.children}
+            
         </StoreContext.Provider>
     );
 };

@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 import { StoreContext } from '../../context/StoreContext'
 import NavbarProfile from '../NavbarProfile/NavbarProfile'
 
-const Navbar = ({setShowLogin}) => {
+const Navbar = () => {
 
     const [menu, setMenu] = useState('home')
 
-    const {getTotalCartAmount, token} = useContext(StoreContext)
+    const {getTotalCartAmount, token, setShowLogin} = useContext(StoreContext)
 
   return (
     <div className='navbar'>

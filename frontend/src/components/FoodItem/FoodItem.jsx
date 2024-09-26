@@ -5,19 +5,34 @@ import { StoreContext } from '../../context/StoreContext'
 
 const FoodItem = ({id, name, price, description, image}) => {
 
-    const {cartItems, addToCart, removeFromCart} = useContext(StoreContext)
+    const {cartItems, addToCart, removeFromCart, token, setShowLogin} = useContext(StoreContext)
 
+    const handleAddToCart = () => {
+        if (token) {
+            addToCart(id)
+        } else {
+            setShowLogin(true)
+        }
+    }
+
+    const handleRemoveFromCart = () => {
+        if (token) {
+            removeFromCart(id)
+        } else {
+            setShowLogin(true)
+        }
+    }
   return (
     <div className='food-item'>
         <div className="food-item-img-container">
             <img className='food-item-image' src={image} alt="" />
             {!cartItems[id]
-                ?<img className='add' onClick={() => addToCart(id)} src={assets.add_icon_white} alt='' />
-                :<div className='food-item-counter'>
-                    <img className='remove-btn' onClick={() => removeFromCart(id)} src={assets.remove_icon_red} alt='' />
+                ? <img className='add' onClick={handleAddToCart} src={assets.add_icon_white} alt='' />
+                : <div className='food-item-counter'>
+                    <img className='remove-btn' onClick={handleRemoveFromCart} src={assets.remove_icon_red} alt='' />
                     <p>{cartItems[id]}</p>
-                    <img className='add-btn' onClick={() => addToCart(id)} src={assets.add_icon_green} alt="" />
-                </div>
+                    <img className='add-btn' onClick={handleAddToCart} src={assets.add_icon_green} alt="" />
+                 </div>
             }
         </div>
 
