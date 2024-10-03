@@ -23,3 +23,6 @@ This project is a food delivery app developed using MERN. It is primarily design
 **Admin:** Admins can add, edit, and delete dishes.
 
 **Payment Integration:** Real payment integration for secure payment of orders with Stripe.
+
+# Vercel
+https://learn-react-food-delivery-project.vercel.app/
